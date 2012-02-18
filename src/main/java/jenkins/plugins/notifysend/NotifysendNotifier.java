@@ -14,6 +14,8 @@ import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Notifier;
 
+import hudson.Proc;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
@@ -34,12 +36,18 @@ public class NotifysendNotifier extends Notifier {
       String image    = chemin + color.getImage();
 
       try{
-        Map<String, String> liste = build.getBuildVariables();
-        String branch  = liste.get("BRANCH");
         String result  = build.getResult().toString();
-        String message = "Job " + build.getProject().getName()  + " terminé (branche : " +  branch + ", build " + build.number + ", etat : " + result + ")";
-        Runtime.getRuntime().exec(new String[] { "notify-send", "--icon=" + image, "Jenkins local", message } );
+        String shortname = "Jenkins local";
+        String description = "Job ${JOB_NAME} terminé (branche : ${BRANCH}, build #${BUILD_NUMBER}, etat : ${BUILD_STATUS})";
+        String command = "notify-send --icon=" + image + " \"" + shortname + "\" \"" + description + "\"";
+        Map<String, String> vars = build.getEnvVars();
+        vars.put("BUILD_STATUS", result);
+        Proc proc = launcher.launch(command, vars, listener.getLogger(), build.getProject().getWorkspace());
+         int exitCode = proc.join();
       }catch (IOException e) {
+        return false;
+      }catch (InterruptedException e) {
+        return false;
       }
 
       return true;
