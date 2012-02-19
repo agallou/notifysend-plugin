@@ -1,0 +1,10 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+<f:section title="Notify-send options">
+   <f:entry title="Name" help="${rootURL}/plugin/notifysend/help-globalConfig-name.html">
+      <f:textbox name="name" value="${descriptor.name()}"/>
+    </f:entry>
+   <f:entry title="Message" help="${rootURL}/plugin/notifysend/help-globalConfig-message.html">
+      <f:textbox name="message" value="${descriptor.message()}"/>
+    </f:entry>
+</f:section>
+</j:jelly>
