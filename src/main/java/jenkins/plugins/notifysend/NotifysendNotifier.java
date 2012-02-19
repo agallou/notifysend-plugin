@@ -24,11 +24,6 @@ import java.util.Map;
 import net.sf.json.JSONObject;
 import org.kohsuke.stapler.StaplerRequest;
 
-import org.kohsuke.stapler.QueryParameter;
-import hudson.util.FormValidation;
-import javax.servlet.ServletException;
-
-
 public class NotifysendNotifier extends Notifier {
 
 	private final String name;
