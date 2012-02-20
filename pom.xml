@@ -9,6 +9,7 @@
   <groupId>org.jvnet.hudson.plugins</groupId>
   <artifactId>notifysend</artifactId>
   <version>0.1</version>
+  <name>Jenkins Notifysend Plugin</name>
   <packaging>hpi</packaging>
 
   <!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->
