@@ -57,9 +57,9 @@ public class NotifysendNotifier extends Notifier {
                         Proc proc = launcher.launch(command, vars, listener.getLogger(), build.getProject().getWorkspace());
                         int exitCode = proc.join();
                 } catch (IOException e) {
-                        return false;
+                        return true;
                 } catch (InterruptedException e) {
-                        return false;
+                        return true;
                 }
                 return true;
         }
